@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4b2d7f">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Hay algo que quiero contarte.">
+  <meta property="og:title" content="Un pequeño secreto para ti ❤️">
+  <meta property="og:description" content="Hay algo que quiero contarte.">
+  <title>Un pequeño secreto para ti ❤️</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%92%97%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-mood="rose">
+
+  <!-- Iconos reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff1c2"/><stop offset=".55" stop-color="#e8c871"/><stop offset="1" stop-color="#c99a2e"/>
+      </linearGradient>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path fill="url(#gGold)" d="M12 21.2C6 17 2.5 13.4 2.5 9.2 2.5 6.3 4.7 4.2 7.4 4.2c1.8 0 3.4.9 4.6 2.6 1.2-1.7 2.8-2.6 4.6-2.6 2.7 0 4.9 2.1 4.9 5 0 4.2-3.5 7.8-9.5 12z"/></symbol>
+      <symbol id="i-heart-plain" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.2C6 17 2.5 13.4 2.5 9.2 2.5 6.3 4.7 4.2 7.4 4.2c1.8 0 3.4.9 4.6 2.6 1.2-1.7 2.8-2.6 4.6-2.6 2.7 0 4.9 2.1 4.9 5 0 4.2-3.5 7.8-9.5 12z"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="5" width="4.2" height="14" rx="1.4" fill="currentColor"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.4" fill="currentColor"/></symbol>
+      <symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.2l1.1-1.6A1.5 1.5 0 0 1 10 3.7h4a1.5 1.5 0 0 1 1.2.7L16.3 6h1.2A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12.5" r="3.3" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Fondo -->
+  <div class="bg bg--rose" aria-hidden="true"></div>
+  <div class="bg bg--dusk" aria-hidden="true"></div>
+  <div class="bg bg--night" aria-hidden="true"></div>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <main id="app">
+
+    <!-- 1 · BIENVENIDA -->
+    <section class="scene" id="scene-intro" aria-labelledby="introTitle">
+      <div class="scene__inner intro__inner">
+        <svg class="intro__heart" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
+        <p class="eyebrow" data-c="intro.eyebrow"></p>
+        <h1 class="title" id="introTitle" tabindex="-1" data-focus data-c="intro.title"></h1>
+        <div class="ornament" aria-hidden="true"><span>✦</span></div>
+        <button class="btn btn--gold" id="btnDiscover" type="button" data-c="intro.button"></button>
+      </div>
+    </section>
+
+    <!-- 2 · UNA PEQUEÑA HISTORIA -->
+    <section class="scene" id="scene-story" aria-label="Una pequeña historia">
+      <div class="scene__inner story__inner">
+        <p class="lead reveal" id="storyLead" tabindex="-1" data-focus data-c="story.lead"></p>
+        <div class="story__lines" id="storyLines" aria-live="polite"></div>
+        <p class="tap-hint" id="storyHint" data-c="story.tapHint"></p>
+        <div class="reveal" id="storyAction" hidden>
+          <button class="btn" id="btnStoryNext" type="button" data-c="story.button"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · SOBRE Y CARTA -->
+    <section class="scene" id="scene-letter" aria-labelledby="letterTitle">
+      <div class="scene__inner letter__inner">
+        <h2 class="heading" id="letterTitle" tabindex="-1" data-focus data-c="letter.title"></h2>
+        <p class="hint" id="letterHint" data-c="letter.hint"></p>
+
+        <div class="envelope-wrap" id="envelopeWrap">
+          <button class="envelope" id="envelope" type="button" data-c-label="letter.envelopeLabel">
+            <span class="envelope__back"></span>
+            <span class="envelope__paper"></span>
+            <span class="envelope__front"></span>
+            <span class="envelope__flap"></span>
+            <span class="envelope__seal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart-plain"/></svg></span>
+          </button>
+        </div>
+
+        <article class="sheet" id="sheet" tabindex="-1" aria-label="Tu carta" hidden>
+          <div class="sheet__scroll" id="sheetScroll">
+            <div id="sheetText" aria-hidden="true"></div>
+            <p class="sr-only" id="sheetSr"></p>
+          </div>
+          <div class="sheet__actions">
+            <button class="btn btn--ghost-dark" id="btnSkipType" type="button" data-c="letter.skip"></button>
+            <button class="btn btn--solid" id="btnLetterNext" type="button" data-c="letter.button" hidden></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4 · GALERÍA -->
+    <section class="scene" id="scene-gallery" aria-labelledby="galleryTitle">
+      <div class="scene__inner scene__inner--wide gallery__inner">
+        <h2 class="heading" id="galleryTitle" tabindex="-1" data-focus data-c="gallery.title"></h2>
+        <p class="text text--soft" data-c="gallery.subtitle"></p>
+        <div class="gallery" id="gallery" role="region" aria-label="Galería de recuerdos" tabindex="0">
+          <ul class="gallery__track" id="galleryTrack"></ul>
+        </div>
+        <div class="gallery__nav">
+          <button class="round" id="galPrev" type="button" data-c-label="ui.prev"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-prev"/></svg></button>
+          <button class="round" id="galNext" type="button" data-c-label="ui.next"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-next"/></svg></button>
+        </div>
+        <button class="btn" id="btnGalleryNext" type="button" data-c="gallery.button"></button>
+      </div>
+    </section>
+
+    <!-- 5 · CANCIÓN -->
+    <section class="scene" id="scene-music" aria-labelledby="musicTitle">
+      <div class="scene__inner music__inner">
+        <h2 class="heading" id="musicTitle" tabindex="-1" data-focus data-c="music.title"></h2>
+        <p class="text text--soft" data-c="music.subtitle"></p>
+
+        <div class="player reveal" id="player">
+          <div class="vinyl" aria-hidden="true"></div>
+          <div class="player__meta">
+            <p class="player__track" data-c="music.track"></p>
+            <p class="player__artist" data-c="music.artist"></p>
+          </div>
+          <button class="play" id="btnPlay" type="button" data-c-label="ui.play">
+            <svg class="ico ico-play" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg>
+            <svg class="ico ico-pause" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pause"/></svg>
+          </button>
+          <div class="player__bar">
+            <input type="range" id="seek" min="0" max="1000" value="0" step="1" data-c-label="ui.seek">
+            <div class="player__times"><span id="tCur">0:00</span><span id="tDur">0:00</span></div>
+          </div>
+          <p class="player__note" id="musicNote" role="status"></p>
+          <audio id="audio" preload="none"></audio>
+        </div>
+
+        <button class="btn" id="btnMusicNext" type="button" data-c="music.button"></button>
+      </div>
+    </section>
+
+    <!-- 6 · MOMENTO FINAL -->
+    <section class="scene" id="scene-final" aria-label="Lo que quería decirte">
+      <div class="scene__inner final__inner">
+        <p class="final__pre reveal" id="finalPre" data-c="final.pre"></p>
+        <h2 class="final__big reveal" id="finalBig" tabindex="-1" data-focus data-c="final.big"></h2>
+        <p class="final__text reveal" id="finalText" data-c="final.text"></p>
+        <div class="reveal" id="finalAction" hidden>
+          <button class="btn btn--gold btn--lg" id="btnFinal" type="button" data-c="final.button"></button>
+        </div>
+        <p class="final__after reveal" id="finalAfter" tabindex="-1" hidden data-c="final.after"></p>
+        <div class="reveal" id="replayWrap" hidden>
+          <button class="link" id="btnReplay" type="button" data-c="final.replay"></button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Control de música discreto (aparece si ya diste play y estás en otra escena) -->
+  <button class="mini" id="mini" type="button" data-c-label="ui.mini" hidden>
+    <svg class="ico ico-play" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg>
+    <svg class="ico ico-pause" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pause"/></svg>
+  </button>
+
+  <noscript>
+    <p style="position:fixed;inset:0;display:grid;place-items:center;padding:24px;text-align:center;font:1.2rem Georgia,serif;color:#fff;background:#4b2d7f">
+      Este pequeño regalo necesita JavaScript para funcionar. 💜
+    </p>
+  </noscript>
+
+  <script src="js/content.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/scenes.js"></script>
+  <script src="js/story.js"></script>
+  <script src="js/letter.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/final.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
